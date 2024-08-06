@@ -1,0 +1,40 @@
+<div class="bg-semiBlack w-screen h-screen pl-20 pt-10 flex">
+  <div class="welcome-section pad">
+    <p class="font-poppins text-5xl text-gray-100">
+      Hello, <span
+        class="bg-gradient-to-r from-purple-600 to-pink-400 bg-clip-text text-transparent font-semibold">Bingy!</span>
+      🍉
+    </p>
+    <!-- input section -->
+    <div class="bg-lightSemiBlack mt-10 rounded-3xl p-6" style="height: 600px; width: 400px;">
+      <!-- file input -->
+      <label class="block mb-4 text-base font-medium text-white font-poppins" for="small_size">Visting Table
+        .xlsx</label>
+      <input id="file-input"
+        class="block w-full mb-5 text-sm border rounded-lg cursor-pointer text-gray-400 focus:outline-none border-gray-600 placeholder-gray-600 font-poppins"
+        style="background-color: #242424;" type="file" accept=".xlsx">
+      <!-- passkey -->
+      <label class="block mb-4 text-base font-medium text-white font-poppins">Key</label>
+      <input type="password" id="password"
+        class="bg-gray-700 border mb-5 border-gray-600 text-white text-sm rounded-lg focus:ring-1 focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 focus:outline-none"
+        style="background-color: #242424;" placeholder="•••••••••" required />
+      <!-- number of days to visit -->
+      <form class="max-w-sm mx-auto">
+        <label for="number-input" class="block mb-4 text-base font-medium text-white">Number of working days:</label>
+        <input type="number" id="number-input" aria-describedby="helper-text-explanation"
+          class="bg-gray-700 border mb-5 border-gray-600 text-white text-sm rounded-lg focus:ring-1 focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 focus:outline-none"
+          style="background-color: #242424;" placeholder="7" required value="22" />
+      </form>
+      <div class="w-full flex justify-center mt-10">
+        <button
+          class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium rounded-lg group bg-gradient-to-br from-purple-600 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 hover:text-white dark:text-white">
+          <span
+            class="relative px-8 py-3.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0 font-poppins text-base">
+            Generate plan
+          </span>
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
