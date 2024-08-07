@@ -1,4 +1,45 @@
 #file-input::file-selector-button {
   padding: 7px;
   margin-right: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.submit-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -10%;
+  width: 120%;
+  height: 100%;
+  @apply bg-gray-900;
+  transform: skew(30deg);
+  transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
+}
+
+.submit-button:hover::before {
+  transform: translate3d(100%, 0, 0);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in-text {
+  animation: fadeIn 0.8s ease-in-out forwards;
+}
+
+.fade-in-text {
+  opacity: 0;
+}
+
+.disable-hover {
+  pointer-events: none;
+  color: inherit;
+  @apply text-white;
 }
