@@ -1,28 +1,28 @@
 <div class="bg-semiBlack w-screen h-screen pl-20 pt-10 flex">
   <div class="welcome-section pad">
-    <p class="font-poppins text-5xl text-gray-100">
+    <p class="font-poppins text-4xl text-gray-100">
       Hello, <span
         class="bg-gradient-to-r from-purple-600 to-pink-400 bg-clip-text text-transparent font-semibold fade-in-text">Bingy!</span>
       🍉
     </p>
     <!-- input section -->
-    <div class="bg-lightSemiBlack mt-10 rounded-3xl p-6" style="height: 600px; width: 400px;">
+    <div class="bg-lightSemiBlack mt-10 rounded-3xl p-6" style="height: 550px; width: 360px;">
       <form [formGroup]="form" (ngSubmit)="generateSchedule()">
         <!-- file input -->
-        <label for="file-input" class="block mb-4 text-base font-medium text-white font-poppins">Visting Table
+        <label for="file-input" class="block mb-4 text-sm font-medium text-white font-poppins">Visting Table
           .xlsx</label>
         <div class="mb-5">
           <input id="file-input" formControlName="fileInput"
-          [class.border-red-400]="submitted && form.get('fileInput')?.errors"
-          [class.ring-red-400]="submitted && form.get('fileInput')?.errors"
-          [class.ring-1]="submitted && form.get('fileInput')?.errors"
-          [class.cursor-not-allowed]="loading"
-          class="block w-full text-sm border rounded-lg cursor-pointer text-gray-400 focus:outline-none border-gray-600 placeholder-gray-600 font-poppins"
-          style="background-color: #242424;" type="file" accept=".xlsx">
-          <p class="text-xs text-red-400 flex flex-row gap-1 mt-2 w-full" *ngIf="submitted && form.get('fileInput')?.errors">
-            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-              x="0px" y="0px" viewBox="0 0 486.463 486.463" style="enable-background:new 0 0 486.463 486.463;"
-              height="14" width="14" fill="bg-red-500" xml:space="preserve">
+            [class.border-red-400]="submitted && form.get('fileInput')?.errors"
+            [class.ring-red-400]="submitted && form.get('fileInput')?.errors"
+            [class.ring-1]="submitted && form.get('fileInput')?.errors" [class.cursor-not-allowed]="loading"
+            class="block w-full text-sm border rounded-lg cursor-pointer text-gray-400 focus:outline-none border-gray-600 placeholder-gray-600 font-poppins"
+            style="background-color: #242424;" type="file" accept=".xlsx">
+          <p class="text-xs text-red-400 flex flex-row gap-1 mt-2 w-full"
+            *ngIf="submitted && form.get('fileInput')?.errors">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+              y="0px" viewBox="0 0 486.463 486.463" style="enable-background:new 0 0 486.463 486.463;" height="14"
+              width="14" fill="bg-red-500" xml:space="preserve">
               <g>
                 <g>
                   <path fill="currentColor" d="M243.225,333.382c-13.6,0-25,11.4-25,25s11.4,25,25,25c13.1,0,25-11.4,24.4-24.4
@@ -43,21 +43,19 @@
         </div>
 
         <!-- passkey -->
-        <label for="password" class="block mb-4 text-base font-medium text-white font-poppins">Key</label>
+        <label for="password" class="block mb-4 text-sm font-medium text-white font-poppins">Key</label>
         <div class="mb-5">
           <input type="password" id="password" formControlName="key"
             [class.border-red-400]="submitted && form.get('key')?.errors"
             [class.ring-red-400]="submitted && form.get('key')?.errors"
-            [class.ring-1]="submitted && form.get('key')?.errors"
-            [class.cursor-not-allowed]="loading"
-            [class.text-gray-400]="loading"
-            [class.text-white]="!loading"
+            [class.ring-1]="submitted && form.get('key')?.errors" [class.cursor-not-allowed]="loading"
+            [class.text-gray-400]="loading" [class.text-white]="!loading"
             class="bg-gray-700 border border-gray-600 text-sm rounded-lg focus:ring-1 focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 focus:outline-none"
             style="background-color: #242424;" placeholder="•••••••••" required />
           <p class="text-xs text-red-400 flex flex-row gap-1 mt-2 w-full" *ngIf="submitted && form.get('key')?.errors">
-            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-              x="0px" y="0px" viewBox="0 0 486.463 486.463" style="enable-background:new 0 0 486.463 486.463;"
-              height="14" width="14" fill="bg-red-500" xml:space="preserve">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+              y="0px" viewBox="0 0 486.463 486.463" style="enable-background:new 0 0 486.463 486.463;" height="14"
+              width="14" fill="bg-red-500" xml:space="preserve">
               <g>
                 <g>
                   <path fill="currentColor" d="M243.225,333.382c-13.6,0-25,11.4-25,25s11.4,25,25,25c13.1,0,25-11.4,24.4-24.4
@@ -78,22 +76,21 @@
 
         </div>
         <!-- number of days to visit -->
-        <label for="number-input" class="block mb-4 text-base font-medium text-white">Number of monthly working days</label>
+        <label for="number-input" class="block mb-4 text-sm font-medium text-white">Number of monthly working
+          days</label>
         <div class="mb-5">
           <input type="number" id="number-input" aria-describedby="helper-text-explanation"
-          [class.border-red-400]="submitted && form.get('numberOfWorkingDays')?.errors"
-          [class.ring-red-400]="submitted && form.get('numberOfWorkingDays')?.errors"
-          [class.ring-1]="submitted && form.get('numberOfWorkingDays')?.errors"
-          [class.cursor-not-allowed]="loading"
-          [class.text-gray-400]="loading"
-          [class.text-white]="!loading"
-          formControlName="numberOfWorkingDays"
-          class="bg-gray-700 border border-gray-600 text-sm rounded-lg focus:ring-1 focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 focus:outline-none"
-          style="background-color: #242424;" placeholder="Example: 22" required value="22" />
-          <p class="text-xs text-red-400 flex flex-row gap-1 mt-2 w-full" *ngIf="submitted && form.get('numberOfWorkingDays')?.errors">
-            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-              x="0px" y="0px" viewBox="0 0 486.463 486.463" style="enable-background:new 0 0 486.463 486.463;"
-              height="14" width="14" fill="bg-red-500" xml:space="preserve">
+            [class.border-red-400]="submitted && form.get('numberOfWorkingDays')?.errors"
+            [class.ring-red-400]="submitted && form.get('numberOfWorkingDays')?.errors"
+            [class.ring-1]="submitted && form.get('numberOfWorkingDays')?.errors" [class.cursor-not-allowed]="loading"
+            [class.text-gray-400]="loading" [class.text-white]="!loading" formControlName="numberOfWorkingDays"
+            class="bg-gray-700 border border-gray-600 text-sm rounded-lg focus:ring-1 focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 focus:outline-none"
+            style="background-color: #242424;" placeholder="Example: 22" required value="22" />
+          <p class="text-xs text-red-400 flex flex-row gap-1 mt-2 w-full"
+            *ngIf="submitted && form.get('numberOfWorkingDays')?.errors">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+              y="0px" viewBox="0 0 486.463 486.463" style="enable-background:new 0 0 486.463 486.463;" height="14"
+              width="14" fill="bg-red-500" xml:space="preserve">
               <g>
                 <g>
                   <path fill="currentColor" d="M243.225,333.382c-13.6,0-25,11.4-25,25s11.4,25,25,25c13.1,0,25-11.4,24.4-24.4
@@ -109,7 +106,8 @@
                 </g>
               </g>
             </svg>
-            <span class="font-poppins" *ngIf="form.get('numberOfWorkingDays')?.errors?.['required']">Required field</span>
+            <span class="font-poppins" *ngIf="form.get('numberOfWorkingDays')?.errors?.['required']">Required
+              field</span>
             <span class="font-poppins" *ngIf="form.get('numberOfWorkingDays')?.errors?.['numericError']">
               The input must contain only numbers
             </span>
@@ -120,17 +118,102 @@
         </div>
         <!-- submit button -->
         <div class="w-full flex justify-center mt-10">
-          <button type="submit"
-            [disabled]="loading"
-            [class.disable-hover]="loading"
+          <button type="submit" [disabled]="loading" [class.disable-hover]="loading"
             class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium rounded-lg group bg-gradient-to-br from-purple-600 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 hover:text-white dark:text-white submit-button">
             <span
-              class="relative px-8 py-3.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0 font-poppins text-base">
+              class="relative px-8 py-3.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0 font-poppins text-sm">
               Generate plan
             </span>
           </button>
         </div>
       </form>
     </div>
+  </div>
+  <!-- map section -->
+  <div class="ml-20 flex flex-wrap" style="margin-top: 88px; max-width: 800px; height: 550px; max-height: 550px;">
+    <div class="flex max-h-96">
+      <div class="map-container">
+        <!-- actual map -->
+        <div class="flex">
+          <google-map #map="googleMap" [zoom]="zoom" [options]="options" height="360px" width="640px" mapId="roadmap">
+            @if (directionsResults$ | async; as directionsResults) {
+            <map-directions-renderer [directions]="directionsResults" />
+            }
+          </google-map>
+        </div>
+      </div>
+      <!-- patch option -->
+      <div class="ml-4 flex flex-col flex-wrap" style="min-height: 360px; max-height: 360px; max-width: 250px;">
+        <div *ngFor="let number of arrayTen; let i = index" [style.animationDelay]="i * 0.2 + 's'" class="fade-in-btn">
+          <button (click)="setBtnActive(i)"
+            class="inline-flex items-center justify-center max-h-20 p-0.5 mb-4 me-4 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-400 hover:text-white dark:text-white focus:outline-none">
+            <span
+              class="relative px-5 py-2.5 transition-all ease-in duration-150 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0 font-poppins"
+              style="min-width: 100px; max-width: 100px;" [class.btn-active]="i === activeBtnIndex">
+              Patch {{ number }}
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- Time Estimation -->
+    <div class="flex">
+      <div class="h-36 flex-col rounded-lg bg-lightSemiBlack items-center" style="width: 280px; margin-right: 10px;">
+        <div class="pt-4 flex justify-center items-center">
+          <p class="font-poppins text-white text-lg text-center">Total Trip Time</p>
+          <svg height="512" viewBox="0 0 24 24" width="512" xmlns="http://www.w3.org/2000/svg"
+            class="w-5 h-5 text-white ml-2">
+            <g data-name="Layer 2" fill="currentColor">
+              <path
+                d="m12 1a11 11 0 1 0 11 11 11.013 11.013 0 0 0 -11-11zm3.707 14.707a1 1 0 0 1 -1.414 0l-3-3a1 1 0 0 1 -.293-.707v-6a1 1 0 0 1 2 0v5.586l2.707 2.707a1 1 0 0 1 0 1.414z" />
+            </g>
+          </svg>
+        </div>
+        <p class="font-poppins text-gray-300 text-xs text-center">approximately</p>
+        <p class="font-poppins
+                  bg-gradient-to-r
+                  text-purple-500
+                  bg-clip-text
+                  text-transparent
+                  text-center
+                  text-3xl
+                  font-medium
+                  fade-in-text
+                  mt-4
+        ">12 Min</p>
+      </div>
+      <div class="h-36 flex-col rounded-lg bg-lightSemiBlack items-center" style="width: 280px;">
+        <div class="pt-4 flex justify-center items-center">
+          <p class="font-poppins text-white text-lg text-center">Distance to travel</p>
+          <svg enable-background="new 0 0 512.064 512.064" height="512" viewBox="0 0 512.064 512.064" width="512"
+            class="w-5 h-5 text-white ml-2"
+            xmlns="http://www.w3.org/2000/svg">
+            <g>
+              <path fill="currentColor"
+                d="m92.131 246.868c-50.801 0-92.131 41.33-92.131 92.132 0 25.683 14.043 56.703 41.74 92.199 19.782 25.352 39.332 43.685 40.155 44.453l10.237 9.558 10.237-9.558c.823-.768 20.373-19.101 40.155-44.453 27.696-35.496 41.74-66.516 41.74-92.199-.001-50.802-41.331-92.132-92.133-92.132zm0 121.938c-16.435 0-29.806-13.371-29.806-29.806s13.371-29.806 29.806-29.806 29.806 13.371 29.806 29.806-13.371 29.806-29.806 29.806z" />
+              <path fill="currentColor"
+                d="m419.932 26.854c-50.801 0-92.131 41.33-92.131 92.131 0 25.683 14.043 56.703 41.739 92.199 19.781 25.352 39.332 43.685 40.154 44.453l10.237 9.558 10.236-9.558c.823-.768 20.374-19.101 40.155-44.453 27.697-35.496 41.74-66.516 41.74-92.199.002-50.8-41.328-92.131-92.13-92.131zm0 121.938c-16.435 0-29.806-13.371-29.806-29.806s13.371-29.806 29.806-29.806c16.436 0 29.807 13.371 29.807 29.806s-13.371 29.806-29.807 29.806z" />
+              <g>
+                <path fill="currentColor"
+                  d="m364.929 479.688h-212.794v-30h212.794c22.058 0 40.003-17.945 40.003-40.003s-17.945-40.003-40.003-40.003h-83.896c-38.6 0-70.004-31.403-70.004-70.003s31.404-70.003 70.004-70.003h78.895v30h-78.895c-22.059 0-40.004 17.945-40.004 40.003s17.945 40.003 40.004 40.003h83.896c38.6 0 70.003 31.403 70.003 70.003s-31.403 70.003-70.003 70.003z" />
+              </g>
+            </g>
+          </svg>
+        </div>
+        <p class="font-poppins text-gray-300 text-xs text-center">total</p>
+        <p class="font-poppins
+                  bg-gradient-to-r
+                  text-orange-400
+                  bg-clip-text
+                  text-transparent
+                  text-center
+                  text-3xl
+                  font-medium
+                  fade-in-text
+                  mt-4
+        ">12 Km</p>
+      </div>
+    </div>
+
   </div>
 </div>

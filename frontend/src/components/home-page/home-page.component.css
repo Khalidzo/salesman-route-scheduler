@@ -1,8 +1,13 @@
 #file-input::file-selector-button {
-  padding: 7px;
-  margin-right: 10px;
-  border: none;
-  cursor: pointer;
+  @apply p-2 cursor-pointer border-none mr-2.5;
+}
+
+#file-input::file-selector-button:hover {
+  @apply bg-gray-200;
+}
+
+#file-input::file-selector-button:active {
+  @apply bg-gray-300;
 }
 
 .submit-button::before {
@@ -24,14 +29,21 @@
 @keyframes fadeIn {
   from {
     opacity: 0;
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
+    transform: translateY(0);
   }
 }
 
 .fade-in-text {
-  animation: fadeIn 0.8s ease-in-out forwards;
+  animation: fadeIn 0.7s ease-out forwards;
+}
+
+.fade-in-btn {
+  opacity: 0;
+  animation: fadeIn 1s ease-out forwards;
 }
 
 .fade-in-text {
@@ -39,7 +51,45 @@
 }
 
 .disable-hover {
-  pointer-events: none;
-  color: inherit;
-  @apply text-white;
+  @apply text-white pointer-events-none;
+}
+
+.map-container {
+  width: 640px;
+  height: 360px;
+  border-radius: 18px; /* Set the radius according to your design */
+  overflow: hidden; /* Ensures the map corners are clipped */
+}
+
+@keyframes drop {
+  0% {
+    transform: translateY(-200px) scaleY(0.9);
+    opacity: 0;
+  }
+  5% {
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(0px) scaleY(1);
+    opacity: 1;
+  }
+  65% {
+    transform: translateY(-17px) scaleY(0.9);
+    opacity: 1;
+  }
+  75% {
+    transform: translateY(-22px) scaleY(0.9);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0px) scaleY(1);
+    opacity: 1;
+  }
+}
+.drop {
+  animation: drop 0.3s linear forwards 2s;
+}
+
+.btn-active {
+  @apply bg-opacity-0;
 }
