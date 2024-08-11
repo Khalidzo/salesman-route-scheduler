@@ -6,6 +6,7 @@ import os
 from core.config import gmaps
 from schemas.visting_table import VistingTableEntry, GeoLocation
 
+
 def validate_visting_table(visiting_table_df: pd.DataFrame) -> bool:
     # Check if the visiting table has the required columns
     required_columns = ["Location"]
@@ -17,6 +18,7 @@ def validate_visting_table(visiting_table_df: pd.DataFrame) -> bool:
         return False
 
     return True
+
 
 def extract_coordinates_and_name(url: str) -> Tuple[GeoLocation, str]:
     """
