@@ -2,8 +2,21 @@ from typing import Tuple
 import re
 import requests
 import pandas as pd
+import os
 from core.config import gmaps
 from schemas.visting_table import VistingTableEntry, GeoLocation
+
+def validate_visting_table(visiting_table_df: pd.DataFrame) -> bool:
+    # Check if the visiting table has the required columns
+    required_columns = ["Location"]
+    if not all(column in visiting_table_df.columns for column in required_columns):
+        return False
+
+    # Check if the visiting table has at least one row
+    if visiting_table_df.shape[0] == 0:
+        return False
+
+    return True
 
 def extract_coordinates_and_name(url: str) -> Tuple[GeoLocation, str]:
     """
@@ -72,11 +85,16 @@ def create_visiting_table(visiting_table_df: pd.DataFrame) -> list[VistingTableE
         visiting_table_raw.append(visiting_list_raw_entry)
 
 
-def filter_visting_table(visting_table_df: pd.DataFrame) -> pd.DataFrame:
-    return visting_table_df[
+def filter_visting_table(visiting_table_df: pd.DataFrame) -> pd.DataFrame:
+    filtered_df = visiting_table_df[
         (
-            visting_table_df["Location"].str.startswith("https://goo.gl/maps/")
-            | visting_table_df["Location"].str.startswith("https://maps.app.goo.gl/")
+            visiting_table_df["Location"].str.startswith("https://goo.gl/maps/")
+            | visiting_table_df["Location"].str.startswith("https://maps.app.goo.gl/")
         )
-        & visting_table_df["Location"].notna()
+        & visiting_table_df["Location"].notna()
     ]
+
+    # Drop rows with duplicate locations
+    filtered_df = filtered_df.drop_duplicates(subset=["Location"], keep="first")
+
+    return filtered_df
