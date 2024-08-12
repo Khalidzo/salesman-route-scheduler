@@ -1,19 +1,23 @@
 from sklearn.cluster import KMeans
 import numpy as np
 import pandas as pd
+from typing import Tuple
 from scipy.spatial.distance import cdist
 from geopy.distance import geodesic
 
 
 def initialize_kmeans(
     data: pd.DataFrame, n_clusters: int, random_state: int = 0
-) -> (KMeans, pd.Series):
-    kmeans = KMeans(n_clusters=n_clusters, random_state=random_state, n_init="auto")
-    cluster_labels = kmeans.fit_predict(data[["latitude", "longitude"]])
-    return kmeans, cluster_labels
+) -> Tuple[KMeans, pd.Series]:
+    try:
+        kmeans = KMeans(n_clusters=n_clusters, random_state=random_state, n_init="auto")
+        cluster_labels = kmeans.fit_predict(data[["latitude", "longitude"]])
+        return kmeans, cluster_labels
+    except Exception as e:
+        raise e
 
 
-def create_distance_matrix(data: pd.DataFrame, cluster_centers):
+def create_distance_matrix(data: pd.DataFrame, cluster_centers) -> np.ndarray:
     return cdist(data[["latitude", "longitude"]], cluster_centers, "euclidean")
 
 

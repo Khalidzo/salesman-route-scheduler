@@ -2,9 +2,8 @@ from typing import Tuple
 import re
 import requests
 import pandas as pd
-import os
 from core.config import gmaps
-from schemas.visting_table import VistingTableEntry, GeoLocation
+from schemas.visting_table import GeoLocation
 
 
 def validate_visting_table(visiting_table_df: pd.DataFrame) -> bool:
@@ -57,34 +56,41 @@ def find_place_by_name(place_name: str, location: GeoLocation, radius=100):
         return None
 
 
-def create_visiting_table(visiting_table_df: pd.DataFrame) -> list[VistingTableEntry]:
-    visiting_table_raw = []
+def create_visiting_table(visiting_table_df: pd.DataFrame) -> pd.DataFrame:
+    visiting_table_data = []
 
-    for _, row in visiting_table_df.iterrows():
-        visiting_list_raw_entry = {}
+    for i, row in visiting_table_df.iterrows():
+        if i < 4:
+            # Extract coordinates and place name from the Google Maps link
+            google_maps_link = row["Location"]
+            geolocation, place_name = extract_coordinates_and_name(google_maps_link)
 
-        # Get Coordinates from the link (Longitude, Latitude)
-        google_maps_link = row["Location"]
-        latitude, longitude, place_name = extract_coordinates_and_name(google_maps_link)
+            # Find the place details using the extracted coordinates and name
+            place = find_place_by_name(place_name, geolocation)
+            pharmacy_address = place.get("formatted_address", "N/A")
+            pharmacy_name = place.get("name", "N/A")
+            google_place_id = place.get("place_id", "N/A")
+            pharmacy_code = row[visiting_table_df.columns[0]]
 
-        latitude = float(latitude)
-        longitude = float(longitude)
-        location = GeoLocation(latitude=latitude, longitude=longitude)
+            # Create a dictionary with the entry's values
+            visiting_list_entry = {
+                "name": pharmacy_name,
+                "address": pharmacy_address,
+                "latitude": geolocation.latitude,
+                "longitude": geolocation.longitude,
+                "google_place_id": google_place_id,
+                "pharmacy_code": pharmacy_code,
+            }
 
-        place = find_place_by_name(place_name, location)
-        pharamcy_address = place.get("formatted_address", "N/A")
-        pharamcy_name = place.get("name", "N/A")
-        google_place_id = place.get("place_id", "N/A")
+            # Add the dictionary to the list
+            visiting_table_data.append(visiting_list_entry)
+        else:
+            break
 
-        # Set entry's values
-        visiting_list_raw_entry = VistingTableEntry(
-            name=pharamcy_name,
-            address=pharamcy_address,
-            location=location,
-            google_place_id=google_place_id,
-        )
+    # Convert the list of dictionaries into a DataFrame
+    visiting_table_df_result = pd.DataFrame(visiting_table_data)
 
-        visiting_table_raw.append(visiting_list_raw_entry)
+    return visiting_table_df_result
 
 
 def filter_visting_table(visiting_table_df: pd.DataFrame) -> pd.DataFrame:

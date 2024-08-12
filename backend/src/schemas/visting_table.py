@@ -11,3 +11,4 @@ class VistingTableEntry(BaseModel):
     address: str
     location: GeoLocation
     google_place_id: str
+    pharmacy_code: str

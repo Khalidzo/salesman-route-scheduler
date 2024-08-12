@@ -4,8 +4,10 @@ import os
 
 load_dotenv()
 
-gmaps = googlemaps.Client(key=os.getenv("GOOGLE_MAPS_API_KEY"))
-GOOGLE_MAPS_BASE_URL = "https://www.google.com/maps/dir/?api=1&"
+gmaps_key = os.getenv("GMAPS_API_KEY")
+gmaps = googlemaps.Client(key=gmaps_key)
+
+GOOGLE_MAPS_BASE_URL = "https://www.google.com/maps/dir/?api=1"
 HOME_ADDRESS = os.getenv("HOME_ADDRESS")
 
 
